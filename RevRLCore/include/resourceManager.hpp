@@ -1,6 +1,7 @@
 #pragma once
 
 #include "raylib.h"
+#include <filesystem>
 #include <string>
 #include <vector>
 
@@ -30,6 +31,6 @@ class resourceManager {
     Texture2D noTexture;
   public:
     Texture2D *getTexture(string type, string name);
-    void init();
+    void init(std::filesystem::path path);
     ~resourceManager();
 };

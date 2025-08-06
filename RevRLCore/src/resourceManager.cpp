@@ -19,8 +19,7 @@ Texture2D *resourceManager::getTexture(string type, string name) {;
     return &noTexture;
 }
 
-void resourceManager::init() {
-    const fs::path path = fs::current_path().append("resources");
+void resourceManager::init(fs::path path) {
     const fs::path soundsPath = path / "sounds";
     const fs::path texturesPath = path / "textures";
 
