@@ -2,30 +2,32 @@
 
 #include <vector>
 
-class updatable {
+namespace RevRLCore {
+
+class Updatable {
   public:
-    updatable();
+    Updatable();
     virtual void update() = 0;
 };
 
-class drawable {
+class Drawable {
   public:
-    drawable();
+    Drawable();
     virtual void draw() = 0;
 };
 
-class updatableHandler;
-class drawableHandler;
+class UpdatableHandler;
+class DrawableHandler;
 
-updatableHandler &getUpdatableHandler();
-drawableHandler &getDrawableHandler();
+UpdatableHandler &getUpdatableHandler();
+DrawableHandler &getDrawableHandler();
 
-class updatableHandler {
+class UpdatableHandler {
   private:
-    std::vector<updatable *> updatables;
+    std::vector<Updatable *> updatables;
 
   public:
-    void add(updatable *obj) { updatables.push_back(obj); }
+    void add(Updatable *obj) { updatables.push_back(obj); }
 
     void run() {
         for (auto obj : updatables)
@@ -33,12 +35,12 @@ class updatableHandler {
     }
 };
 
-class drawableHandler {
+class DrawableHandler {
   private:
-    std::vector<drawable *> drawables;
+    std::vector<Drawable *> drawables;
 
   public:
-    void add(drawable *obj) { drawables.push_back(obj); }
+    void add(Drawable *obj) { drawables.push_back(obj); }
 
     void run() {
         for (auto obj : drawables)
@@ -46,16 +48,18 @@ class drawableHandler {
     }
 };
 
-inline updatableHandler &getUpdatableHandler() {
-    static updatableHandler handler;
+inline UpdatableHandler &getUpdatableHandler() {
+    static UpdatableHandler handler;
     return handler;
 }
 
-inline drawableHandler &getDrawableHandler() {
-    static drawableHandler handler;
+inline DrawableHandler &getDrawableHandler() {
+    static DrawableHandler handler;
     return handler;
 }
 
 // automatic registration
-inline updatable::updatable() { getUpdatableHandler().add(this); }
-inline drawable::drawable() { getDrawableHandler().add(this); }
+inline Updatable::Updatable() { getUpdatableHandler().add(this); }
+inline Drawable::Drawable() { getDrawableHandler().add(this); }
+
+} // namespace RevRLCore

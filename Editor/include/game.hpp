@@ -2,9 +2,11 @@
 
 #include "resourceManager.hpp"
 
+using namespace RevRLCore;
+
 class game {
   private:
-    resourceManager resources;
+    ResourceManager resources;
 
   public:
     void run();

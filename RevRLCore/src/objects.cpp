@@ -2,14 +2,17 @@
 
 #include "raylib.h"
 
-object::object(Texture2D* tex) {
+using namespace RevRLCore;
+
+Object::Object(Texture2D* tex, Vector2 initPos) {
+    texture = tex;
+    pos = initPos;
+}
+
+void Object::setTexture(Texture2D *tex) {
     texture = tex;
 }
 
-void object::setTexture(Texture2D *tex) {
-    texture = tex;
-}
-
-void object::draw() {
-    DrawTexture(*texture, x, y, WHITE);
+void Object::draw() {
+    DrawTextureV(*texture, pos, WHITE);
 }

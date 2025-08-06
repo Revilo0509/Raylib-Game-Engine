@@ -3,18 +3,21 @@
 #include "interfaces.hpp"
 #include "raylib.h"
 
-class object : public drawable {
+namespace RevRLCore {
+
+class Object : public Drawable {
   private:
     Texture2D *texture;
 
   public:
-    int x;
-    int y;
+    Vector2 pos;
 
   public:
-    object(Texture2D *tex);
+    Object(Texture2D *tex, Vector2 initPos);
     void setTexture(Texture2D *tex);
     void draw() override;
 };
 
-class blob : public object {};
+class blob : public Object {};
+
+} // namespace RevRLCore

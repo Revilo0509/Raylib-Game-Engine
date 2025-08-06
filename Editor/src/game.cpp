@@ -10,7 +10,7 @@
 gameSettings gameSettings;
 
 void game::run() {
-    object blo(resources.getTexture("entity", "blob.png"));
+    Object blo(resources.getTexture("entity", "blob.png"), { 10, 10 });
     
     while (!WindowShouldClose()) {
         getUpdatableHandler().run();

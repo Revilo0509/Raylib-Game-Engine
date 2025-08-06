@@ -5,7 +5,9 @@
 
 namespace fs = std::filesystem;
 
-Texture2D *resourceManager::getTexture(string type, string name) {;
+using namespace RevRLCore;
+
+Texture2D *ResourceManager::getTexture(string type, string name) {
     for (auto &entry : textureVector) {
         if (entry.type != type) {
             continue;
@@ -19,7 +21,7 @@ Texture2D *resourceManager::getTexture(string type, string name) {;
     return &noTexture;
 }
 
-void resourceManager::init(fs::path path) {
+void ResourceManager::init(fs::path path) {
     const fs::path soundsPath = path / "sounds";
     const fs::path texturesPath = path / "textures";
 
@@ -31,10 +33,10 @@ void resourceManager::init(fs::path path) {
             continue;
         }
 
-        vector<textureElement> tempTextures;
+        vector<TextureElement> tempTextures;
         for (const auto &entry : fs::directory_iterator(parentEntry)) {
             tempTextures.push_back(
-                textureElement{entry.path().filename().string(),
+                TextureElement{entry.path().filename().string(),
                                LoadTexture(entry.path().string().c_str())});
         }
         textureVector.push_back(
@@ -43,12 +45,12 @@ void resourceManager::init(fs::path path) {
 
     for (const auto &entry : fs::directory_iterator(soundsPath)) {
         sounds.push_back(
-            soundElement{entry.path().filename().string(),
+            SoundElement{entry.path().filename().string(),
                          LoadSound(entry.path().string().c_str())});
     }
 }
 
-resourceManager::~resourceManager() {
+ResourceManager::~ResourceManager() {
     for (const auto &parentEntry : textureVector) {
         for (const auto &entry : parentEntry.textures) {
             UnloadTexture(entry.texture);

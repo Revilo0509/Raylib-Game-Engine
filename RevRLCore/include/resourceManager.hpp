@@ -5,32 +5,37 @@
 #include <string>
 #include <vector>
 
+namespace RevRLCore {
+
 template <typename T> using vector = std::vector<T>;
 
 using string = std::string;
 
-struct textureElement {
+struct TextureElement {
     string name;
     Texture2D texture;
 };
 
-struct soundElement {
+struct SoundElement {
     string name;
     Sound sound;
 };
 
-struct textureVector {
+struct TextureVector {
     std::string type;
-    vector<textureElement> textures;
+    vector<TextureElement> textures;
 };
 
-class resourceManager {
+class ResourceManager {
   private:
-    vector<textureVector> textureVector;
-    vector<soundElement> sounds;
+    vector<TextureVector> textureVector;
+    vector<SoundElement> sounds;
     Texture2D noTexture;
+
   public:
     Texture2D *getTexture(string type, string name);
     void init(std::filesystem::path path);
-    ~resourceManager();
+    ~ResourceManager();
 };
+
+} // namespace RevRLCore
