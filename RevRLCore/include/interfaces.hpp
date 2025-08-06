@@ -58,5 +58,4 @@ inline drawableHandler &getDrawableHandler() {
 
 // automatic registration
 inline updatable::updatable() { getUpdatableHandler().add(this); }
-
 inline drawable::drawable() { getDrawableHandler().add(this); }

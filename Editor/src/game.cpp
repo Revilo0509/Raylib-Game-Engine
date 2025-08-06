@@ -1,6 +1,6 @@
 #include "game.hpp"
 
-#include "entities.hpp"
+#include "objects.hpp"
 #include "settings.hpp"
 #include "interfaces.hpp"
 #include <raylib.h>
@@ -8,8 +8,8 @@
 gameSettings gameSettings;
 
 void game::run() {
-    entity blo(resources.getTexture("entity", "blob.png"));
-
+    object blo(resources.getTexture("entity", "blob.png"));
+    
     while (!WindowShouldClose()) {
         getUpdatableHandler().run();
         BeginDrawing();

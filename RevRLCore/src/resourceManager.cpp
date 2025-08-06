@@ -5,18 +5,18 @@
 
 namespace fs = std::filesystem;
 
-Texture2D resourceManager::getTexture(string type, string name) {
-    for (const auto &entry : textureVector) {
+Texture2D *resourceManager::getTexture(string type, string name) {;
+    for (auto &entry : textureVector) {
         if (entry.type != type) {
             continue;
         }
-        for (const auto &texture : entry.textures) {
+        for (auto &texture : entry.textures) {
             if (texture.name == name) {
-                return texture.texture;
+                return &texture.texture;
             }
         }
     }
-    return noTexture;
+    return &noTexture;
 }
 
 void resourceManager::init() {

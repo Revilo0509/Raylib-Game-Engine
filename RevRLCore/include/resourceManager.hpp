@@ -29,7 +29,7 @@ class resourceManager {
     vector<soundElement> sounds;
     Texture2D noTexture;
   public:
-    Texture2D getTexture(string type, string name);
+    Texture2D *getTexture(string type, string name);
     void init();
     ~resourceManager();
 };
