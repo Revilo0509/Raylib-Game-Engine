@@ -11,13 +11,12 @@
 
 
 void Game::run() {
-    initFunc(resources);
-
     while (!WindowShouldClose()) {
-        getUpdatableHandler().run();
+        
 
         BeginDrawing();
             ClearBackground(BLACK);
+            getUpdatableHandler().run();
             getDrawableHandler().run();
                     
             #ifdef RevRLImGui_Implementation
@@ -30,8 +29,7 @@ void Game::run() {
     }
 }
 
-Game::Game(std::function<void(ResourceManager&)> initFunction) {
-    initFunc = initFunction;
+Game::Game() {
     SetConfigFlags(FLAG_VSYNC_HINT | FLAG_WINDOW_HIGHDPI |
                    FLAG_WINDOW_RESIZABLE);
     //InitWindow(gameSettings->WINDOW_WIDTH, gameSettings->WINDOW_HEIGHT,

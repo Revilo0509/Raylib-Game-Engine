@@ -9,10 +9,6 @@ Object::Object(Texture2D* tex, Vector2 initPos) {
     pos = initPos;
 }
 
-void Object::setTexture(Texture2D *tex) {
-    texture = tex;
-}
-
 void Object::draw() {
     DrawTextureV(*texture, pos, WHITE);
 }
