@@ -1,8 +1,8 @@
 #pragma once
 
-class runnable {
+class updatable {
   public:
-    virtual void run();
+    virtual void update();
 };
 
 class drawable {

@@ -1,12 +1,12 @@
 #pragma once
 
-#include "interfaces.hpp"
+#include "resourceManager.hpp"
 
-class game : public runnable {
+class game {
   private:
-    
+    resourceManager resources;
+
   public:
     void run();
     game();
-    ~game();
 };
