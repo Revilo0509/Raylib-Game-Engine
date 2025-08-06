@@ -19,7 +19,7 @@ endif()
 # --- Static Library ---
 add_library(RevRLCore STATIC ${SRC_FILES})
 
-target_include_directories(RevRLCore PRIVATE
+target_include_directories(RevRLCore PUBLIC
     "${CMAKE_CURRENT_SOURCE_DIR}/include"
     "${CMAKE_CURRENT_SOURCE_DIR}/libs"
 )

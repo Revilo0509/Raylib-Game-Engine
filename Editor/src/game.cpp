@@ -2,7 +2,8 @@
 
 #include "entities.hpp"
 #include "settings.hpp"
-#include "objectHandlers.hpp"
+#include "interfaces.hpp"
+#include <raylib.h>
 
 gameSettings gameSettings;
 
