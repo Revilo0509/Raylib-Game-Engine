@@ -17,7 +17,7 @@ if (NOT raylib_FOUND)
 endif()
 
 # --- Static Library ---
-add_library(RevRLImGui STATIC ${SRC_FILES})
+add_library(RevRLImGui SHARED ${SRC_FILES})
 
 target_include_directories(RevRLImGui PUBLIC
     "${CMAKE_CURRENT_SOURCE_DIR}/include"

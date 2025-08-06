@@ -16,8 +16,8 @@ if (NOT raylib_FOUND)
     FetchContent_MakeAvailable(raylib)
 endif()
 
-# --- Static Library ---
-add_library(RevRLCore STATIC ${SRC_FILES})
+# --- Library ---
+add_library(RevRLCore SHARED ${SRC_FILES})
 
 target_include_directories(RevRLCore PUBLIC
     "${CMAKE_CURRENT_SOURCE_DIR}/include"

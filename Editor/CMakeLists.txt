@@ -25,6 +25,20 @@ add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
     "$<TARGET_FILE_DIR:${PROJECT_NAME}>/resources"
 )
 
+# Copy RevRLCore.dll to editor output dir
+add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+    $<TARGET_FILE:RevRLCore>
+    $<TARGET_FILE_DIR:${PROJECT_NAME}>
+)
+
+# Copy RevRLImGui.dll to editor output dir
+add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+    $<TARGET_FILE:RevRLImGui>
+    $<TARGET_FILE_DIR:${PROJECT_NAME}>
+)
+
 target_include_directories(${PROJECT_NAME} PRIVATE
     "${CMAKE_CURRENT_SOURCE_DIR}/include"
     "${CMAKE_CURRENT_SOURCE_DIR}/libs"

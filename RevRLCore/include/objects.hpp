@@ -18,6 +18,8 @@ class Object : public Drawable {
     void draw() override;
 };
 
-class blob : public Object {};
+class CollisonObject : public Object, public Updatable {
+  
+};
 
 } // namespace RevRLCore
