@@ -1,6 +1,18 @@
+#include "ImGuiHandler.hpp"
 #include "game.hpp"
 #include "interfaces.hpp"
 #include "objects.hpp"
+
+
+#include "imgui.h"
+
+class window : public RevRLImGui::GuiUpdatable {
+  public:
+    void draw() override {
+        bool open = true;
+        ImGui::ShowDemoWindow(&open);
+    };
+};
 
 class FallingObj : public Object, public Updatable {
   public:
