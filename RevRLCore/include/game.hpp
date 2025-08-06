@@ -4,11 +4,13 @@
 
 using namespace RevRLCore;
 
-class game {
+class Game {
   private:
     ResourceManager resources;
 
   public:
     void run();
-    game();
+    virtual void loop();
+    Game();
+    ~Game();
 };

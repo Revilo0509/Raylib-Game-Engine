@@ -1,6 +1,6 @@
 #include "game.hpp"
 
 int main() {
-    game gameInstance;
+    Game gameInstance;
     gameInstance.run();
 }
