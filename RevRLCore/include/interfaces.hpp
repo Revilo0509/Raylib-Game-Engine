@@ -1,18 +1,24 @@
 #pragma once
 
+#include <algorithm>
 #include <vector>
+
 
 namespace RevRLCore {
 
 class Updatable {
   public:
     Updatable();
+    ~Updatable();
+
     virtual void update() = 0;
 };
 
 class Drawable {
   public:
     Drawable();
+    ~Drawable();
+
     virtual void draw() = 0;
 };
 
@@ -28,6 +34,10 @@ class UpdatableHandler {
 
   public:
     void add(Updatable *obj) { updatables.push_back(obj); }
+    void remove(Updatable *obj) {
+        auto it = std::remove(updatables.begin(), updatables.end(), obj);
+        updatables.erase(it, updatables.end());
+    }
 
     void run() {
         for (auto obj : updatables)
@@ -41,6 +51,10 @@ class DrawableHandler {
 
   public:
     void add(Drawable *obj) { drawables.push_back(obj); }
+    void remove(Drawable *obj) {
+        auto it = std::remove(drawables.begin(), drawables.end(), obj);
+        drawables.erase(it, drawables.end());
+    }
 
     void run() {
         for (auto obj : drawables)
@@ -48,18 +62,11 @@ class DrawableHandler {
     }
 };
 
-inline UpdatableHandler &getUpdatableHandler() {
-    static UpdatableHandler handler;
-    return handler;
-}
-
-inline DrawableHandler &getDrawableHandler() {
-    static DrawableHandler handler;
-    return handler;
-}
-
-// automatic registration
+// automatic registration and deregistration
 inline Updatable::Updatable() { getUpdatableHandler().add(this); }
+inline Updatable::~Updatable() { getUpdatableHandler().remove(this); }
+
 inline Drawable::Drawable() { getDrawableHandler().add(this); }
+inline Drawable::~Drawable() { getDrawableHandler().remove(this); }
 
 } // namespace RevRLCore
