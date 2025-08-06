@@ -1,13 +1,19 @@
 #include "game.hpp"
 
+#include "entities.hpp"
 #include "settings.hpp"
+#include "objectHandlers.hpp"
 
 gameSettings gameSettings;
 
 void game::run() {
+    entity blo(resources.getTexture("entity", "blob.png"));
+
     while (!WindowShouldClose()) {
+        getUpdatableHandler().run();
         BeginDrawing();
             ClearBackground(BLACK);
+            getDrawableHandler().run();
         EndDrawing();
     }
 }
