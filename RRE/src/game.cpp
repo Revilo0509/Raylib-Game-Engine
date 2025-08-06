@@ -1,16 +1,17 @@
 #include "Game.hpp"
 
-#include "interfaces.hpp"
+#include "objects/primitives.hpp"
 
 #include "raylib.h"
 #include <filesystem>
 
 void Game::run() {
     while (!WindowShouldClose()) {
+        RRE::Objects::getUpdatableHandler().run();
+        
         BeginDrawing();
             ClearBackground(BLACK);
-            getUpdatableHandler().run();
-            getDrawableHandler().run();;
+            RRE::Objects::getDrawableHandler().run();
         EndDrawing();
     }
 }

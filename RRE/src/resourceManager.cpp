@@ -3,9 +3,9 @@
 #include "raylib.h"
 #include <filesystem>
 
-namespace fs = std::filesystem;
+namespace RevRLCore {
 
-using namespace RevRLCore;
+namespace fs = std::filesystem;
 
 Texture2D *ResourceManager::getTexture(string type, string name) {
     for (auto &entry : textureVector) {
@@ -61,3 +61,5 @@ ResourceManager::~ResourceManager() {
         UnloadSound(entry.sound);
     }
 }
+
+} // namespace RevRLCore

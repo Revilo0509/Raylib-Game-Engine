@@ -1,5 +1,5 @@
 # --- Source Files ---
-file(GLOB SRC_FILES "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp")
+file(GLOB_RECURSE SRC_FILES "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp")
 
 # --- External Dependencies ---
 include(FetchContent)
@@ -17,13 +17,13 @@ if (NOT raylib_FOUND)
 endif()
 
 # --- Library ---
-add_library(RevRLCore SHARED ${SRC_FILES})
+add_library(RRE SHARED ${SRC_FILES})
 
-target_include_directories(RevRLCore PUBLIC
+target_include_directories(RRE PUBLIC
     "${CMAKE_CURRENT_SOURCE_DIR}/include"
     "${CMAKE_CURRENT_SOURCE_DIR}/libs"
 )
 
-target_link_libraries(RevRLCore PUBLIC
+target_link_libraries(RRE PUBLIC
     raylib
 )
