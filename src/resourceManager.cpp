@@ -3,7 +3,7 @@
 #include "raylib.h"
 #include <filesystem>
 
-namespace RevRLCore {
+namespace RRE {
 
 namespace fs = std::filesystem;
 

@@ -22,7 +22,7 @@ struct SoundElement {
 };
 
 struct TextureVector {
-    std::string type;
+    string type;
     vector<TextureElement> textures;
 };
 
@@ -38,4 +38,4 @@ class ResourceManager {
     ~ResourceManager();
 };
 
-} // namespace RevRLCore
+} // namespace RRE
