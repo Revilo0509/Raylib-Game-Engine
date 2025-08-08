@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.15)
-project(RRE VERSION 1.0 LANGUAGES CXX)
+project(RRE VERSION 1.0 LANGUAGES C CXX)
 
 # --- Source Files ---
 file(GLOB_RECURSE SRC_FILES "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp")
@@ -19,6 +19,17 @@ if (NOT raylib_FOUND)
     FetchContent_MakeAvailable(raylib)
 endif()
 
+find_package(box2d CONFIG)
+if (NOT box2d_FOUND)
+    message(STATUS "Box2D not found. Fetching via FetchContent")
+    FetchContent_Declare(
+        box2d
+        GIT_REPOSITORY https://github.com/erincatto/box2d.git
+        GIT_TAG v3.1.1
+    )
+    FetchContent_MakeAvailable(box2d)
+endif()
+
 # --- Library ---
 add_library(RRE SHARED ${SRC_FILES})
 
@@ -28,7 +39,10 @@ target_include_directories(RRE PUBLIC
     "$<INSTALL_INTERFACE:include>"
 )
 
-target_link_libraries(RRE PUBLIC raylib)
+target_link_libraries(RRE PUBLIC 
+    raylib
+    box2d
+)
 
 # --- Export & Install ---
 include(GNUInstallDirs)

@@ -11,6 +11,7 @@ void Game::run() {
         
         BeginDrawing();
             ClearBackground(BLACK);
+
             RRE::Objects::getDrawableHandler().run();
         EndDrawing();
     }

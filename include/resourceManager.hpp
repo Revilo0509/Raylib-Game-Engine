@@ -5,7 +5,7 @@
 #include <string>
 #include <vector>
 
-namespace RevRLCore {
+namespace RRE {
 
 template <typename T> using vector = std::vector<T>;
 

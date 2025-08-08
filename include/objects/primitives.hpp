@@ -5,7 +5,7 @@
 
 namespace RRE::Objects {
 
-class Updatable {
+class RRE_API Updatable {
   public:
     Updatable();
     virtual ~Updatable();
@@ -14,7 +14,7 @@ class Updatable {
     void run() { update(); }
 };
 
-class Drawable {
+class RRE_API Drawable {
   public:
     Drawable();
     virtual ~Drawable();
@@ -23,7 +23,7 @@ class Drawable {
     void run() { draw(); }
 };
 
-class Object : public Drawable {
+class RRE_API Object : public Drawable {
   public:
     Vector2 pos;
     Texture2D *texture;

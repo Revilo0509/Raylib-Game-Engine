@@ -1,11 +1,12 @@
 #pragma once
 
+#include "export.h"
 #include "resourceManager.hpp"
 #include "settings.hpp"
 
-using namespace RevRLCore;
+using namespace RRE;
 
-class Game {
+class RRE_API Game {
   private:
     GameSettings *gameSettings;
 
