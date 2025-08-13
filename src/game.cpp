@@ -1,6 +1,7 @@
 #include "Game.hpp"
 
 #include "objects/primitives.hpp"
+#include "objects/textures.hpp"
 
 #include "raylib.h"
 #include <filesystem>
@@ -9,9 +10,9 @@ void Game::run() {
     while (!WindowShouldClose()) {
         RRE::Objects::getUpdatableHandler().run();
         
+
         BeginDrawing();
             ClearBackground(BLACK);
-
             RRE::Objects::getDrawableHandler().run();
         EndDrawing();
     }

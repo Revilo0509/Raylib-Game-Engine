@@ -1,14 +1,12 @@
 #pragma once
 
-#include "export.h"
-
 #include <vector>
 #include <algorithm>
 
 namespace RRE::instanceManagers {
 
 template <typename T>
-class RRE_API InstanceHandler {
+class InstanceHandler {
   private:
     std::vector<T *> instances;
 

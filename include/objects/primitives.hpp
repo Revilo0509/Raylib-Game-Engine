@@ -5,7 +5,7 @@
 
 namespace RRE::Objects {
 
-class RRE_API Updatable {
+class Updatable {
   public:
     Updatable();
     virtual ~Updatable();
@@ -14,7 +14,7 @@ class RRE_API Updatable {
     void run() { update(); }
 };
 
-class RRE_API Drawable {
+class Drawable {
   public:
     Drawable();
     virtual ~Drawable();
@@ -23,7 +23,7 @@ class RRE_API Drawable {
     void run() { draw(); }
 };
 
-class RRE_API Object : public Drawable {
+class Object : public Drawable {
   public:
     Vector2 pos;
     Texture2D *texture;
@@ -31,6 +31,7 @@ class RRE_API Object : public Drawable {
     Object(Texture2D *tex, Vector2 initPos);
     void draw() override;
 };
+
 
 // Type aliases
 using UpdatableHandler = instanceManagers::InstanceHandler<Updatable>;

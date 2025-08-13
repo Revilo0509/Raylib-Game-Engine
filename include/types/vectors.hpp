@@ -7,7 +7,7 @@
 
 namespace RRE::Types {
 
-struct RRE_API Vector2 {
+struct  Vector2 {
     float x, y;
 
     Vector2(float x = 0, float y = 0) : x(x), y(y) {}
@@ -63,7 +63,7 @@ inline Vector2 operator/(Vector2 lhs, float scalar) {
     return lhs;
 }
 
-struct RRE_API Vector3 {
+struct  Vector3 {
     float x, y, z;
 
     Vector3(float x = 0, float y = 0, float z = 0) : x(x), y(y), z(z) {}
@@ -121,7 +121,7 @@ inline Vector3 operator/(Vector3 lhs, float scalar) {
     return lhs;
 }
 
-struct RRE_API Vector4 {
+struct  Vector4 {
     float x, y, z, w;
 
     Vector4(float x = 0, float y = 0, float z = 0, float w = 0)
