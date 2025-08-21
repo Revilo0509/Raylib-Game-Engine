@@ -19,6 +19,7 @@ if (NOT raylib_FOUND)
     FetchContent_MakeAvailable(raylib)
 endif()
 
+# box2d
 find_package(box2d CONFIG)
 if (NOT box2d_FOUND)
     message(STATUS "Box2D not found. Fetching via FetchContent")
@@ -44,39 +45,9 @@ target_link_libraries(RRE PUBLIC
     box2d
 )
 
-# --- Export & Install ---
-include(GNUInstallDirs)
+# --- Examples (optional) ---
+option(BUILD_EXAMPLES "Build example programs" OFF)
 
-install(TARGETS RRE
-    EXPORT RRETargets
-    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-    ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
-    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
-    INCLUDES DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
-)
-
-install(DIRECTORY include/ DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
-
-install(EXPORT RRETargets
-    FILE RRETargets.cmake
-    NAMESPACE RRE::
-    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/RRE
-)
-
-include(CMakePackageConfigHelpers)
-write_basic_package_version_file(
-    "${CMAKE_CURRENT_BINARY_DIR}/RREConfigVersion.cmake"
-    COMPATIBILITY SameMajorVersion
-)
-
-configure_package_config_file(
-    "${CMAKE_CURRENT_SOURCE_DIR}/cmake/RREConfig.cmake.in"
-    "${CMAKE_CURRENT_BINARY_DIR}/RREConfig.cmake"
-    INSTALL_DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/RRE
-)
-
-install(FILES
-    "${CMAKE_CURRENT_BINARY_DIR}/RREConfig.cmake"
-    "${CMAKE_CURRENT_BINARY_DIR}/RREConfigVersion.cmake"
-    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/RRE
-)
+if(BUILD_EXAMPLES)
+    add_subdirectory(examples)
+endif()
