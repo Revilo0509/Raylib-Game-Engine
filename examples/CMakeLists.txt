@@ -25,7 +25,7 @@ foreach(EXAMPLE ${EXAMPLE_SOURCES})
 endforeach()
 
 # Copy resources to the output directory
-set(EXAMPLE_RESOURCES "${CMAKE_CURRENT_SOURCE_DIR}/resources")
+set(EXAMPLE_RESOURCES "${CMAKE_CURRENT_SOURCE_DIR}/examples/resources")
 if(EXISTS ${EXAMPLE_RESOURCES})
     add_custom_command(TARGET ${EXAMPLE_NAME} POST_BUILD
         COMMAND ${CMAKE_COMMAND} -E copy_directory

@@ -4,29 +4,34 @@
 #include "objects/textures.hpp"
 
 #include "raylib.h"
-#include <filesystem>
+
+namespace RRE {
 
 void Game::run() {
     while (!WindowShouldClose()) {
         RRE::Objects::getUpdatableHandler().run();
-        
+        RRE::Objects::Textures::getTexturedHandler().run();
 
         BeginDrawing();
             ClearBackground(BLACK);
             RRE::Objects::getDrawableHandler().run();
+
+            auto drawableTextures = RRE::Objects::Textures::getTexturedHandler().getAll();
+            for (auto &tex : drawableTextures) {
+                tex->drawToScreen();
+            }
+
         EndDrawing();
     }
 }
 
-Game::Game() {
-    SetConfigFlags(FLAG_VSYNC_HINT | FLAG_WINDOW_HIGHDPI |
-                   FLAG_WINDOW_RESIZABLE);
-    // InitWindow(gameSettings->WINDOW_WIDTH, gameSettings->WINDOW_HEIGHT,
-    //            gameSettings->WINDOW_TITLE);
-    InitWindow(1270, 720, "editor");
-    resources.init(std::filesystem::current_path().append("resources"));
+Game::Game(int WINDOW_WIDTH, int WINDOW_HEIGHT, std::string WINDOW_TITLE,
+           unsigned int i_ConfigFlags) {
+
+    SetConfigFlags(i_ConfigFlags);
+    InitWindow(WINDOW_WIDTH, WINDOW_HEIGHT, WINDOW_TITLE.c_str());
 }
 
-Game::~Game() {
-    CloseWindow();
-}
+Game::~Game() { CloseWindow(); }
+
+} // namespace RRE

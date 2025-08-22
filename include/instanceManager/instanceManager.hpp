@@ -1,19 +1,17 @@
 #pragma once
 
-#include <vector>
 #include <algorithm>
+#include <vector>
+
 
 namespace RRE::instanceManagers {
 
-template <typename T>
-class InstanceHandler {
+template <typename T> class InstanceHandler {
   private:
     std::vector<T *> instances;
 
   public:
-    void add(T *instance) {
-        instances.push_back(instance);
-    }
+    void add(T *instance) { instances.push_back(instance); }
 
     void remove(T *instance) {
         auto it = std::remove(instances.begin(), instances.end(), instance);
@@ -25,9 +23,7 @@ class InstanceHandler {
             instance->run();
     }
 
-    const std::vector<T *> &getAll() const {
-        return instances;
-    }
+    const std::vector<T *> &getAll() const { return instances; }
 };
 
-} // namespace RevRLCore
+} // namespace RRE::instanceManagers

@@ -62,4 +62,4 @@ ResourceManager::~ResourceManager() {
     }
 }
 
-} // namespace RevRLCore
+} // namespace RRE

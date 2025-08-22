@@ -1,23 +1,30 @@
 #pragma once
 
 #include "instanceManager/instanceManager.hpp"
+#include <raylib.h>
 
 namespace RRE::Objects::Textures {
 
 class Textured {
   public:
-    Textured();
+    RenderTexture texture;
+    Textured(int width, int height);
     virtual ~Textured();
 
-    virtual void draw() = 0;
-    void run() { draw(); }
+    void drawToScreen();
+    virtual void drawToTexture() = 0;
+    void wrapper();
+    void run() { wrapper(); }
 };
 
 using TexturedHandler = instanceManagers::InstanceHandler<Textured>;
 
 TexturedHandler &getTexturedHandler();
 
-inline Textured::Textured() { getTexturedHandler().add(this); }
+inline Textured::Textured(int width, int height) {
+    LoadRenderTexture(width, height);
+    getTexturedHandler().add(this);
+}
 inline Textured::~Textured() { getTexturedHandler().remove(this); }
 
 } // namespace RRE::Objects::Textures
