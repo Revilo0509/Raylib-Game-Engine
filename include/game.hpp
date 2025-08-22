@@ -1,6 +1,5 @@
 #pragma once
 
-
 #include "resourceManager.hpp"
 #include "settings.hpp"
 

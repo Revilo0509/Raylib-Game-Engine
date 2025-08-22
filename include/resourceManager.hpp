@@ -28,9 +28,9 @@ struct TextureVector {
 
 class ResourceManager {
   private:
-    vector<TextureVector> textureVector;
-    vector<SoundElement> sounds;
-    Texture2D noTexture;
+    vector<TextureVector> m_textureVector;
+    vector<SoundElement> m_sounds;
+    Texture2D m_noTexture;
 
   public:
     Texture2D *getTexture(string type, string name);
