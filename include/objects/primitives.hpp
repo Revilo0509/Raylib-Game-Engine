@@ -1,7 +1,6 @@
 #pragma once
 
 #include "instanceManager/instanceManager.hpp"
-#include "raylib.h"
 
 namespace RRE::Objects {
 
@@ -22,16 +21,6 @@ class Drawable {
     virtual void draw() = 0;
     void run() { draw(); }
 };
-
-class Object : public Drawable {
-  public:
-    Vector2 pos;
-    Texture2D *texture;
-
-    Object(Texture2D *tex, Vector2 initPos);
-    void draw() override;
-};
-
 
 // Type aliases
 using UpdatableHandler = instanceManagers::InstanceHandler<Updatable>;

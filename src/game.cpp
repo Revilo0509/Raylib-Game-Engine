@@ -5,21 +5,31 @@
 
 #include "raylib.h"
 
-namespace RRE {
+namespace RRE::Game {
 
 void Game::run() {
+    float accumulator = 0.0f;
+
     while (!WindowShouldClose()) {
-        RRE::Objects::getUpdatableHandler().run();
+
+        float deltaTime = GetFrameTime();
+        accumulator += deltaTime;
+        while (accumulator >= tickRate) {
+            RRE::Objects::getUpdatableHandler().run();
+            accumulator -= tickRate;
+        }
+
         RRE::Objects::Textures::getTexturedHandler().run();
 
         BeginDrawing();
-            ClearBackground(BLACK);
-            RRE::Objects::getDrawableHandler().run();
+        ClearBackground(BLACK);
+        RRE::Objects::getDrawableHandler().run();
 
-            auto drawableTextures = RRE::Objects::Textures::getTexturedHandler().getAll();
-            for (auto &tex : drawableTextures) {
-                tex->drawToScreen();
-            }
+        auto drawableTextures =
+            RRE::Objects::Textures::getTexturedHandler().getAll();
+        for (auto &tex : drawableTextures) {
+            tex->drawToScreen();
+        }
 
         EndDrawing();
     }
@@ -34,4 +44,4 @@ Game::Game(int WINDOW_WIDTH, int WINDOW_HEIGHT, std::string WINDOW_TITLE,
 
 Game::~Game() { CloseWindow(); }
 
-} // namespace RRE
+} // namespace RRE::Game
