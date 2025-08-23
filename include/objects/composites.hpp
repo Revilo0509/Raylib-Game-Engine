@@ -1,26 +1,50 @@
 #pragma once
 
 #include "objects/primitives.hpp"
+#include "types/vectors.hpp"
 #include <raylib.h>
 
 namespace RRE::Objects {
 
-class Object : public Drawable {
-  public:
-    Vector2 pos;
-    Texture2D *texture;
+using RREVec2 = RRE::Types::Vec2;
 
-    Object(Texture2D *tex, Vector2 i_pos);
-    void draw() override;
+class tl_Object : public Drawable {
+  public:
+    RREVec2 pos;
+
+  public:
+    tl_Object(RREVec2 i_pos) : pos(i_pos) {}
 };
 
-class Player : public Object, public Updatable {
+class Object : public tl_Object {
   public:
-    int speed = 6;
+    Texture2D *texture;
 
   public:
-    Player(Texture2D *tex, Vector2 i_pos) : Object(tex, i_pos) {}
+    void draw() override;
+
+    Object(Texture2D *tex, RREVec2 i_pos) : tl_Object(i_pos), texture(tex) {}
+};
+
+class Movable : public Updatable, public tl_Object {
+  public:
+    Velocity velocity;
+    float speed;
+
+  public:
+    Movable(RREVec2 i_pos) : tl_Object(i_pos), velocity(0, 0) {}
+
+    void update() override {
+        pos.x += velocity.velocity.x;
+        pos.y += velocity.velocity.y;
+    }
+};
+
+class Player : public Movable {
+public:
     void update() override;
+
+    Player(RREVec2 i_pos);
 };
 
 } // namespace RRE::Objects

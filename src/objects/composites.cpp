@@ -2,21 +2,27 @@
 
 namespace RRE::Objects {
 
-Object::Object(Texture2D *tex, Vector2 i_pos) : pos(i_pos), texture(tex) {}
 void Object::draw() { DrawTextureV(*texture, pos, WHITE); }
 
-void Player::update() {
-    if (IsKeyDown(KEY_W)) {
-        pos.y -= speed;
-    }
-    if (IsKeyDown(KEY_S)) {
-        pos.y += speed;
-    }
-    if (IsKeyDown(KEY_A)) {
-        pos.x -= speed;
-    }
-    if (IsKeyDown(KEY_D)) {
-        pos.x += speed;
-    }
+Player::Player(RREVec2 i_pos) : Movable(i_pos) {
+    speed = 6;
+    velocity = Velocity(0.0f, 0.0f);
 }
+
+void Player::update() {
+    velocity.velocity.x = 0.0f;
+    velocity.velocity.y = 0.0f;
+
+    if (IsKeyDown(KEY_W))
+        velocity.velocity.y = -speed;
+    if (IsKeyDown(KEY_S))
+        velocity.velocity.y = speed;
+    if (IsKeyDown(KEY_A))
+        velocity.velocity.x = -speed;
+    if (IsKeyDown(KEY_D))
+        velocity.velocity.x = speed;
+
+    Movable::update();
+}
+
 } // namespace RRE::Objects

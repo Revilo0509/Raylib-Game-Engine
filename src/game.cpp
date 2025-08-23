@@ -1,7 +1,6 @@
 #include "Game.hpp"
 
 #include "objects/primitives.hpp"
-#include "objects/textures.hpp"
 
 #include "raylib.h"
 
@@ -19,14 +18,14 @@ void Game::run() {
             accumulator -= tickRate;
         }
 
-        RRE::Objects::Textures::getTexturedHandler().run();
+        RRE::Objects::getTexturedHandler().run();
 
         BeginDrawing();
         ClearBackground(BLACK);
         RRE::Objects::getDrawableHandler().run();
 
         auto drawableTextures =
-            RRE::Objects::Textures::getTexturedHandler().getAll();
+            RRE::Objects::getTexturedHandler().getAll();
         for (auto &tex : drawableTextures) {
             tex->drawToScreen();
         }
