@@ -18,8 +18,8 @@ enum Flags : unsigned int {
 class Game {
   public:
     float tickRate = 1.0f / 60.0f;
-    Flags i_gameFlags = Flags::WINDOW_PLAYER_BOUNDS;
-    Type i_gameTypeFlags = Type::SIDE_SCROLLER;
+    Flags gameFlags = Flags::WINDOW_PLAYER_BOUNDS;
+    Type gameTypeFlags = Type::SIDE_SCROLLER;
 
   public:
     void run();
