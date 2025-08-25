@@ -9,6 +9,7 @@ namespace RRE {
 class GamePrototype {
   public:
     float tickRate = 1.0f / 128.0f;
+    unsigned int scene = 0;
 
   public:
     GamePrototype(int WINDOW_WIDTH = 1280, int WINDOW_HEIGHT = 720,
@@ -24,7 +25,10 @@ class GamePrototype {
 
 class Updatable {
   public:
-    Updatable();
+    unsigned int scene = 0;
+
+  public:
+    Updatable(unsigned int i_scene);
     virtual ~Updatable();
 
     virtual void update() = 0;
@@ -33,7 +37,10 @@ class Updatable {
 
 class Drawable {
   public:
-    Drawable();
+    unsigned int scene = 0;
+
+  public:
+    Drawable(unsigned int i_scene);
     virtual ~Drawable();
 
     virtual void draw() = 0;
@@ -45,23 +52,22 @@ class Object : public Drawable {
     Vector2 pos;
     Texture *texture;
 
-public:
-    Object(int x, int y, Texture *i_texture);
-    Object(Vector2 i_pos, Texture *i_texture);
+  public:
+    Object(int x, int y, Texture *i_texture, unsigned int i_scene = 0);
+    Object(Vector2 i_pos, Texture *i_texture, unsigned int i_scene = 0);
     void draw() override;
+
 };
 
 // Generic manager for instances
-template <typename T>
-class InstanceManager {
+template <typename T> class InstanceManager {
   public:
-    void add(T *instance);
-    void remove(T *instance);
-    void run();
-    const std::vector<T *> &getAll() const;
+    void add(T *instance, unsigned int scene = 0);
+    void remove(T *instance, unsigned int scene = 0);
+    void run(unsigned int scene = 0);
 
   private:
-    std::vector<T *> instances;
+    std::vector<std::vector<T *>> instances; // Scenes -> Instances
 };
 
 } // namespace RRE
