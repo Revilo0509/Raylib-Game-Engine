@@ -6,7 +6,7 @@
 
 namespace RRE::Game {
 
-void Game::run() {
+void GamePrototype::run() {
     float accumulator = 0.0f;
 
     while (!WindowShouldClose()) {
@@ -14,6 +14,7 @@ void Game::run() {
         float deltaTime = GetFrameTime();
         accumulator += deltaTime;
         while (accumulator >= tickRate) {
+            this->update();
             RRE::Objects::getUpdatableHandler().run();
             accumulator -= tickRate;
         }
@@ -24,23 +25,22 @@ void Game::run() {
         ClearBackground(BLACK);
         RRE::Objects::getDrawableHandler().run();
 
-        auto drawableTextures =
-            RRE::Objects::getTexturedHandler().getAll();
+        auto drawableTextures = RRE::Objects::getTexturedHandler().getAll();
         for (auto &tex : drawableTextures) {
             tex->drawToScreen();
         }
-
+        this->draw();
         EndDrawing();
     }
 }
 
-Game::Game(int WINDOW_WIDTH, int WINDOW_HEIGHT, std::string WINDOW_TITLE,
-           unsigned int i_ConfigFlags) {
-
+GamePrototype::GamePrototype(int WINDOW_WIDTH, int WINDOW_HEIGHT,
+                             std::string WINDOW_TITLE,
+                             unsigned int i_ConfigFlags) {
     SetConfigFlags(i_ConfigFlags);
     InitWindow(WINDOW_WIDTH, WINDOW_HEIGHT, WINDOW_TITLE.c_str());
 }
 
-Game::~Game() { CloseWindow(); }
+GamePrototype::~GamePrototype() { CloseWindow(); }
 
 } // namespace RRE::Game

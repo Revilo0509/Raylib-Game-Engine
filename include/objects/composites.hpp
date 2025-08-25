@@ -40,11 +40,11 @@ class Movable : public Updatable, public tl_Object {
     }
 };
 
-class Player : public Movable {
+class InputPlayer : public Movable {
 public:
     void update() override;
 
-    Player(RREVec2 i_pos);
+    InputPlayer(RREVec2 i_pos);
 };
 
 } // namespace RRE::Objects

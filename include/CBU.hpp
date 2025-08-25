@@ -1,3 +1,5 @@
+// Class Building Utilities
+
 /*
  * GETTER / GETTERSETTER code taken from Raylib-cpp wrapper
  */
