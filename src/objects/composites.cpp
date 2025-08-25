@@ -4,12 +4,12 @@ namespace RRE::Objects {
 
 void Object::draw() { DrawTextureV(*texture, pos, WHITE); }
 
-Player::Player(RREVec2 i_pos) : Movable(i_pos) {
+InputPlayer::InputPlayer(RREVec2 i_pos) : Movable(i_pos) {
     speed = 6;
     velocity = Velocity(0.0f, 0.0f);
 }
 
-void Player::update() {
+void InputPlayer::update() {
     velocity.velocity.x = 0.0f;
     velocity.velocity.y = 0.0f;
 
