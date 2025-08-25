@@ -1,28 +1,17 @@
-#include "QDU.hpp"
-#include "RRE_Aliases.hpp"
+#include "RRE.hpp"
 
 class Game : public RRE::GamePrototype {
-  public:
-    void draw() override { DrawFPS(10, 10); }
-
-    void update() override {}
-};
-
-class ObjectPro : public RRE::Object {
-  public:
-    ObjectPro(Texture *i_texture, RRE::Vec2 i_pos)
-        : RRE::Object(i_texture, i_pos) {}
-
+    public:
     void draw() override {
-        RRE::QDU::SimpleDrawTexturePro(texture, Rectangle{0, 0, 100, 100});
+        DrawFPS(10, 10);
     }
 };
 
 int main() {
     Game game;
 
-    Texture im_logo = LoadTexture("./resources/logo/logo.png");
-    ObjectPro logo(&im_logo, RRE::Vec2{100, 100});
+    Texture t_maja = LoadTexture("./res/maja_nobg_small.png");
+    RRE::Object maja(100, 100, &t_maja);
 
     game.run();
 }

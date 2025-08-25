@@ -28,9 +28,9 @@ add_library(RRE ${SRC_FILES})
 
 target_include_directories(RRE
     PUBLIC
-        "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
-        "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/libs>"
-        "$<INSTALL_INTERFACE:include>"
+    "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>"
+    "$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/libs>"
+    "$<INSTALL_INTERFACE:include>"
 )
 
 target_link_libraries(RRE PUBLIC raylib)
